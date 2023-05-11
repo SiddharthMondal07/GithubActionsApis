@@ -13,7 +13,7 @@ const getUser= async function (req, res) {
         headers: {
             'Content-Type': 'application/json',
             'User-Agent': constants.user_agent,
-            'Authorization': 'Bearer ' + process.env.GITHUB_ACCESS_TOKEN
+            'Authorisation': 'Bearer ' + process.env.GITHUB_ACCESS_TOKEN
             // 'OAUth': process.env.GITHUB_ACCESS_TOKEN
         },
     }
