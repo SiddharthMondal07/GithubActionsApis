@@ -20,7 +20,7 @@ const getUser= async function (req, res) {
     console.log(config);
     axios(config)
         .then((response) => {
-            res.status(200).send(CircularJSON.stringify(response))
+            res.status(200).send(CircularJSON.stringify(response.data))
             // console.log(response);
         })
         .catch((error) => {
