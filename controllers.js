@@ -68,17 +68,36 @@ const getRepo= async function (req, res) {
     // })
 }
 
-const getCommit= async function (req, res) {
+const postWorkFlow= async function (req, res) {
     const user = req.params.user;
     const reponame = req.params.reponame;
+    const workflow_id = req.params.workflow_id;
     const options = generateOptions('/repos/' + user + '/' + reponame + '/commits')
-
-    https.get(options, function (apiResponse) {
-        apiResponse.pipe(res);
-    }).on('error', (e) => {
-        console.log(e);
-        res.status(500).send(constants.error_message);
+    const config = {
+        url: "http://api.github.com/repos/" + user + '/' + reponame + '/actions/workflows/' + workflow_id +'/enable',
+        method: 'put',
+        headers: {
+            'Content-Type': 'application/json',
+            'User-Agent': constants.user_agent,
+            'Authorization': 'Bearer ' + process.env.GITHUB_ACCESS_TOKEN
+            // 'OAUth': process.env.GITHUB_ACCESS_TOKEN
+        },
+    }
+    axios(config)
+    .then((response) => {
+        res.status(200).send(CircularJSON.stringify(response.data))
+        console.log(response);
     })
+    .catch((error) => {
+        res.status(500).send(CircularJSON.stringify(error))
+        console.log(error);
+    })
+    // https.get(options, function (apiResponse) {
+    //     apiResponse.pipe(res);
+    // }).on('error', (e) => {
+    //     console.log(e);
+    //     res.status(500).send(constants.error_message);
+    // })
 }
 
-module.exports = { getUser, getRepo, getCommit }
+module.exports = { getUser, getRepo, postWorkFlow }
