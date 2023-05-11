@@ -17,15 +17,15 @@ const getUser= async function (req, res) {
             // 'OAUth': process.env.GITHUB_ACCESS_TOKEN
         },
     }
-
+    console.log(config);
     axios(config)
         .then((response) => {
             res.status(200).send(CircularJSON.stringify(response))
-            console.log(response);
+            // console.log(response);
         })
         .catch((error) => {
-            res.status(500).send(CircularJSON.stringify(error))
-            console.log(error);
+            res.send(CircularJSON.stringify(error))
+            // console.log(error);
         })
     // https.get(options, function (apiResponse) {
     //     apiResponse.pipe(res);
@@ -48,23 +48,23 @@ const getRepo= async function (req, res) {
         },
     }
 
-    // axios(config)
-    //     .then((response) => {
-    //         res.status(200).send(CircularJSON.stringify(response))
-    //         console.log(response);
-    //     })
-    //     .catch((error) => {
-    //         res.status(500).send(CircularJSON.stringify(error))
-    //         console.log(error);
-    //     })
+    axios(config)
+        .then((response) => {
+            res.status(200).send(CircularJSON.stringify(response))
+            console.log(response);
+        })
+        .catch((error) => {
+            res.status(500).send(CircularJSON.stringify(error))
+            console.log(error);
+        })
     const options = generateOptions('/repos/' + user + '/' + reponame) 
 
-    https.get(options, function (apiResponse) {
-        apiResponse.pipe(res);
-    }).on('error', (e) => {
-        console.log(e);
-        res.status(500).send(constants.error_message);
-    })
+    // https.get(options, function (apiResponse) {
+    //     apiResponse.pipe(res);
+    // }).on('error', (e) => {
+    //     console.log(e);
+    //     res.status(500).send(constants.error_message);
+    // })
 }
 
 const getCommit= async function (req, res) {
