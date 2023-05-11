@@ -42,8 +42,9 @@ const getRepo= async function (req, res) {
     const config = {
         url: "http://api.github.com/repos/" + user + '/' + reponame,
         headers: {
+            'Content-Type': 'application/json',
             'User-Agent': constants.user_agent,
-            'Authorization': 'Bearer ' + process.env.GITHUB_ACCESS_TOKEN
+            // 'Authorization': 'Bearer ' + process.env.GITHUB_ACCESS_TOKEN
             // 'OAUth': process.env.GITHUB_ACCESS_TOKEN
         },
     }
