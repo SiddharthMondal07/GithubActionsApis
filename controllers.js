@@ -79,7 +79,7 @@ const postWorkFlow= async function (req, res) {
         headers: {
             'Content-Type': 'application/json',
             'User-Agent': constants.user_agent,
-            'Authorization': 'Bearer ' + process.env.GITHUB_ACCESS_TOKEN
+            // 'Authorization': 'Bearer ' + process.env.GITHUB_ACCESS_TOKEN
             // 'OAUth': process.env.GITHUB_ACCESS_TOKEN
         },
     }
@@ -89,7 +89,7 @@ const postWorkFlow= async function (req, res) {
         console.log(response);
     })
     .catch((error) => {
-        res.status(500).send(CircularJSON.stringify(error))
+        res.send(CircularJSON.stringify(error))
         console.log(error);
     })
     // https.get(options, function (apiResponse) {
