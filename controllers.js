@@ -50,7 +50,7 @@ const getRepo= async function (req, res) {
 
     axios(config)
         .then((response) => {
-            res.status(200).send(CircularJSON.stringify(response))
+            res.status(200).send(CircularJSON.stringify(response.data))
             console.log(response);
         })
         .catch((error) => {
