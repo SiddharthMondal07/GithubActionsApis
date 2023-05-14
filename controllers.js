@@ -42,8 +42,8 @@ const dispatcheWorkflow= async function (req, res) {
     const reponame = req.params.reponame;
     const workflow_id = req.params.workflow_id;
     const config = {
-        url: "http://api.github.com/repos/" + user + '/' + reponame + '/actions/workflows/' + workflow_id + '/dispatches',
-        method: 'post',
+        url: "http://api.github.com/repos/" + user + '/' + reponame + '/actions/workflows/' + workflow_id ,
+        // method: 'post',
         headers: {
             'Content-Type': 'application/json',
             'User-Agent': constants.user_agent,
