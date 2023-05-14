@@ -36,11 +36,14 @@ const getUser= async function (req, res) {
     // })
 }
 
-const getRepo= async function (req, res) {
+///repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches
+const dispatcheWorkflow= async function (req, res) {
     const user = req.params.user;
     const reponame = req.params.reponame;
+    const workflow_id = req.params.workflow_id;
     const config = {
-        url: "http://api.github.com/repos/" + user + '/' + reponame,
+        url: "http://api.github.com/repos/" + user + '/' + reponame + '/actions/workflows/' + workflow_id + '/dispatches',
+        method: 'post',
         headers: {
             'Content-Type': 'application/json',
             'User-Agent': constants.user_agent,
@@ -100,4 +103,4 @@ const postWorkFlow= async function (req, res) {
     // })
 }
 
-module.exports = { getUser, getRepo, postWorkFlow }
+module.exports = { getUser, dispatcheWorkflow, postWorkFlow }
