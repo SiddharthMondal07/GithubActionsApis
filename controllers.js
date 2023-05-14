@@ -13,7 +13,7 @@ const getUser= async function (req, res) {
         headers: {
             'Content-Type': 'application/json',
             'User-Agent': constants.user_agent,
-            'Authorisation': 'Bearer ' + process.env.GITHUB_ACCESS_TOKEN
+            'Authorisation': 'Bearer ' + process.env.GITHUB_ACCESS_TOKEN,
             // 'OAUth': process.env.GITHUB_ACCESS_TOKEN
         },
     }
@@ -82,7 +82,8 @@ const postWorkFlow= async function (req, res) {
         headers: {
             'Content-Type': 'application/json',
             'User-Agent': constants.user_agent,
-            // 'Authorization': 'Bearer ' + process.env.GITHUB_ACCESS_TOKEN
+            'Authorization': 'Bearer ' + process.env.GITHUB_ACCESS_TOKEN,
+            'X-GitHub-Api-Version': '2022-11-28'
             // 'OAUth': process.env.GITHUB_ACCESS_TOKEN
         },
     }
